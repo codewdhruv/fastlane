@@ -73,13 +73,13 @@ pipeline:
                   failureStrategies: []
               - step:
                   type: Run
-                  name: Debug brew
+                  name: Bundle execute fastlane generate swift api
                   identifier: Debug_brew
                   spec:
                     shell: Sh
-                    command: |
+                    command: |-
                       #!/bin/bash --login -eo pipefail
-                      brew -v
+                      bundle exec fastlane generate_swift_api
                   when:
                     stageStatus: All
                   failureStrategies: []
