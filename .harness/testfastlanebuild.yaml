@@ -52,8 +52,7 @@ pipeline:
                     shell: Sh
                     command: |-
                       #!/bin/bash --login -eo pipefail
-                      echo "ruby-${_RUBY_VERSION}" > /.ruby-version
-                      echo 'chruby ruby-${_RUBY_VERSION}' >> $BASH_ENV
+                      echo "ruby-${_RUBY_VERSION}" 
                   when:
                     stageStatus: All
                   failureStrategies: []
