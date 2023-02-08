@@ -1,0 +1,59 @@
+pipeline:
+  name: test-fastlane-build
+  identifier: testfastlanebuild
+  projectIdentifier: NgLabs
+  orgIdentifier: default
+  tags: {}
+  properties:
+    ci:
+      codebase:
+        connectorRef: gitconnectordhruba
+        repoName: fastlane
+        build: <+input>
+  stages:
+    - stage:
+        name: Validate Fastlane swift generation
+        identifier: Validate_Fastlaneswift_generation
+        description: ""
+        type: CI
+        spec:
+          cloneCodebase: true
+          platform:
+            os: Linux
+            arch: Amd64
+          runtime:
+            type: Cloud
+            spec: {}
+          execution:
+            steps:
+              - step:
+                  type: RestoreCacheGCS
+                  name: cache restore git
+                  identifier: cache_restore_git
+                  spec:
+                    connectorRef: gcpdhruba
+                    bucket: test-fastlane
+                    key: src-v1-{{ arch }}-{{ .Branch }}-{{ .Revision }}
+                    archiveFormat: Tar
+              - step:
+                  type: RestoreCacheGCS
+                  name: cache restore bundle
+                  identifier: cache_restore_bundle
+                  spec:
+                    connectorRef: gcpdhruba
+                    bucket: test-fastlane
+                    key: v3-gems-{{ arch }}-<< parameters.ruby_version >>-{{ checksum "Gemfile.lock" }}
+                    archiveFormat: Tar
+              - step:
+                  type: Run
+                  name: Set Ruby version
+                  identifier: Set_Ruby_version
+                  spec:
+                    shell: Sh
+                    command: |-
+                      #!/bin/bash --login -eo pipefail
+                      echo "ruby-${_RUBY_VERSION}" > ~/.ruby-version
+                      echo 'chruby ruby-${_RUBY_VERSION}' >> $BASH_ENV
+                  when:
+                    stageStatus: All
+                  failureStrategies: []
