@@ -71,3 +71,15 @@ pipeline:
                   when:
                     stageStatus: All
                   failureStrategies: []
+              - step:
+                  type: Run
+                  name: Debug brew
+                  identifier: Debug_brew
+                  spec:
+                    shell: Sh
+                    command: |
+                      #!/bin/bash --login -eo pipefail
+                      brew -v
+                  when:
+                    stageStatus: All
+                  failureStrategies: []
