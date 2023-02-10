@@ -54,6 +54,8 @@ pipeline:
                     shell: Sh
                     command: |-
                       #!/bin/bash -eo pipefail
+
+                      gem install bundler:2.3.14
                       bundle exec fastlane validate_docs
                   when:
                     stageStatus: All
