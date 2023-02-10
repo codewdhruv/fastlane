@@ -31,6 +31,19 @@ pipeline:
                     command: |-
                       #!/bin/bash -eo pipefail
                       gem update --system
+              - step:
+                  type: Run
+                  name: Bundle install
+                  identifier: Bundle_install
+                  spec:
+                    connectorRef: harnessnew
+                    image: fastlanetools/ci:0.3.0
+                    shell: Sh
+                    command: |-
+                      #!/bin/bash -eo pipefail
+                      gem install bundler -v $(cat Gemfile.lock | tail -1 | tr -d " ")
+                      bundle config set --local path .bundle
+                      bundle check || bundle install --jobs=4 --retry=3
   properties:
     ci:
       codebase:
