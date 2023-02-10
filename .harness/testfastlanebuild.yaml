@@ -25,6 +25,8 @@ pipeline:
                   name: Setup build
                   identifier: Setup_build
                   spec:
+                    connectorRef: harnessnew
+                    image: fastlanetools/ci:0.3.0
                     shell: Sh
                     command: |-
                       #!/bin/bash -eo pipefail
