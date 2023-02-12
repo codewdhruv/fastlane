@@ -100,3 +100,4 @@ pipeline:
         connectorRef: gitconnectordhruba
         repoName: fastlane
         build: <+input>
+  allowStageExecutions: true
