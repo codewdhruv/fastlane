@@ -9,16 +9,9 @@ pipeline:
         - stage:
             name: Validate Documentation
             identifier: Validate_Documentation
-            description: ""
             type: CI
             spec:
               cloneCodebase: true
-              platform:
-                os: Linux
-                arch: Amd64
-              runtime:
-                type: Cloud
-                spec: {}
               execution:
                 steps:
                   - step:
@@ -70,6 +63,13 @@ pipeline:
                       when:
                         stageStatus: All
                       failureStrategies: []
+              infrastructure:
+                type: KubernetesDirect
+                spec:
+                  connectorRef: localconnector
+                  namespace: harness-delegate-ng
+                  nodeSelector: {}
+                  os: Linux
         - stage:
             name: Modules load up tests
             identifier: Modules_load_up_tests
