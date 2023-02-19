@@ -51,7 +51,7 @@ pipeline:
 
                           gem install bundler -v 2.3.14
                           bundle config set --local path .bundle
-                          bundle exec fastlane validate_docs
+                          bundle exec validate_docs
                       when:
                         stageStatus: All
                       failureStrategies: []
