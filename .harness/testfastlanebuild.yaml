@@ -75,6 +75,8 @@ pipeline:
                       name: Setup build
                       identifier: Setup_build
                       spec:
+                        connectorRef: harnessnew
+                        image: circleci/ruby:2.6
                         shell: Sh
                         command: |-
                           #!/bin/bash --login -eo pipefail
@@ -84,6 +86,8 @@ pipeline:
                       name: Run tests
                       identifier: Run_tests
                       spec:
+                        connectorRef: harnessnew
+                        image: circleci/ruby:2.6
                         shell: Sh
                         command: |-
                           #!/bin/bash --login -eo pipefail
@@ -115,7 +119,7 @@ pipeline:
                       identifier: bundle_install
                       spec:
                         connectorRef: harnessnew
-                        image: fastlanetools/ci:0.3.0
+                        image: circleci/ruby:2.6
                         shell: Sh
                         command: |-
                           #!/bin/bash -eo pipefail
@@ -128,7 +132,7 @@ pipeline:
                       identifier: lint_test
                       spec:
                         connectorRef: harnessnew
-                        image: fastlanetools/ci:0.3.0
+                        image: circleci/ruby:2.6
                         shell: Sh
                         command: |-
                           #!/bin/bash -eo pipefail
