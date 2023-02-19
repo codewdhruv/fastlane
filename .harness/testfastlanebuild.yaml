@@ -24,7 +24,7 @@ pipeline:
                         shell: Sh
                         command: |-
                           #!/bin/bash -eo pipefail
-                          gem update --system
+                          gem install $(echo $(gem build fastlane.gemspec) | sed 's/.*File: //')
                   - step:
                       type: Run
                       name: Run_4
@@ -63,14 +63,12 @@ pipeline:
                       when:
                         stageStatus: All
                       failureStrategies: []
-              infrastructure:
-                type: KubernetesDirect
-                spec:
-                  connectorRef: localconnector
-                  namespace: default
-                  automountServiceAccountToken: true
-                  nodeSelector: {}
-                  os: Linux
+              platform:
+                os: Linux
+                arch: Amd64
+              runtime:
+                type: Cloud
+                spec: {}
         - stage:
             name: Modules load up tests
             identifier: Modules_load_up_tests
