@@ -34,6 +34,15 @@ pipeline:
                           gem update --system
                   - step:
                       type: Run
+                      name: Run_4
+                      identifier: Run_4
+                      spec:
+                        connectorRef: harnessnew
+                        image: fastlanetools/ci:0.3.0
+                        shell: Sh
+                        command: cat Gemfile.lock | tail -1 | tr -d " "
+                  - step:
+                      type: Run
                       name: Bundle install
                       identifier: Bundle_install
                       spec:
