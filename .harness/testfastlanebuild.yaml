@@ -46,12 +46,12 @@ pipeline:
                         connectorRef: harnessnew
                         image: fastlanetools/ci:0.3.0
                         shell: Sh
-                        command: |-
+                        command: |
                           #!/bin/bash -eo pipefail
 
                           gem install bundler -v 2.3.14
                           bundle config set --local path .bundle
-                          bundle exec validate_docs
+                          bundle exec fastlane validate_docs
                       when:
                         stageStatus: All
                       failureStrategies: []
