@@ -67,7 +67,8 @@ pipeline:
                 type: KubernetesDirect
                 spec:
                   connectorRef: localconnector
-                  namespace: harness-delegate-ng
+                  namespace: default
+                  automountServiceAccountToken: true
                   nodeSelector: {}
                   os: Linux
         - stage:
