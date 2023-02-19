@@ -114,6 +114,8 @@ pipeline:
                       name: bundle install
                       identifier: bundle_install
                       spec:
+                        connectorRef: harnessnew
+                        image: fastlanetools/ci:0.3.0
                         shell: Sh
                         command: |-
                           #!/bin/bash -eo pipefail
@@ -125,6 +127,8 @@ pipeline:
                       name: lint test
                       identifier: lint_test
                       spec:
+                        connectorRef: harnessnew
+                        image: fastlanetools/ci:0.3.0
                         shell: Sh
                         command: |-
                           #!/bin/bash -eo pipefail
