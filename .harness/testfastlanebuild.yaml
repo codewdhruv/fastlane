@@ -94,6 +94,41 @@ pipeline:
               runtime:
                 type: Cloud
                 spec: {}
+        - stage:
+            name: Lint source code
+            identifier: Lint_source_code
+            description: ""
+            type: CI
+            spec:
+              cloneCodebase: true
+              platform:
+                os: Linux
+                arch: Amd64
+              runtime:
+                type: Cloud
+                spec: {}
+              execution:
+                steps:
+                  - step:
+                      type: Run
+                      name: bundle install
+                      identifier: bundle_install
+                      spec:
+                        shell: Sh
+                        command: |-
+                          #!/bin/bash -eo pipefail
+                          gem install bundler -v $(cat Gemfile.lock | tail -1 | tr -d " ")
+                          bundle config set --local path .bundle
+                          bundle check || bundle install --jobs=4 --retry=3
+                  - step:
+                      type: Run
+                      name: lint test
+                      identifier: lint_test
+                      spec:
+                        shell: Sh
+                        command: |-
+                          #!/bin/bash -eo pipefail
+                          bundle exec fastlane lint_source
   properties:
     ci:
       codebase:
