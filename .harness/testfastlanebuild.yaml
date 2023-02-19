@@ -16,6 +16,15 @@ pipeline:
                 steps:
                   - step:
                       type: Run
+                      name: Run_5
+                      identifier: Run_5
+                      spec:
+                        connectorRef: harnessnew
+                        image: fastlanetools/ci:0.3.0
+                        shell: Sh
+                        command: gem build fastlane.gemspec
+                  - step:
+                      type: Run
                       name: Setup build
                       identifier: Setup_build
                       spec:
