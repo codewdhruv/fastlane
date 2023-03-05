@@ -137,6 +137,32 @@ pipeline:
                         command: |-
                           #!/bin/bash -eo pipefail
                           bundle exec fastlane lint_source
+        - stage:
+            name: Execute tests on Ubuntu
+            identifier: Execute_tests_on_Ubuntu
+            description: ""
+            type: CI
+            spec:
+              cloneCodebase: true
+              platform:
+                os: Linux
+                arch: Amd64
+              runtime:
+                type: Cloud
+                spec: {}
+              execution:
+                steps:
+                  - step:
+                      type: Run
+                      name: Setup Build
+                      identifier: Setup_Build
+                      spec:
+                        connectorRef: harnessnew
+                        image: fastlanetools/ci:0.3.0
+                        shell: Sh
+                        command: |-
+                          #!/bin/bash -eo pipefail
+                          mkdir -p ~/test-reports
   properties:
     ci:
       codebase:
