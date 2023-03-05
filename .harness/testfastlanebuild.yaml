@@ -190,6 +190,20 @@ pipeline:
                       when:
                         stageStatus: All
                       failureStrategies: []
+                  - step:
+                      type: Run
+                      name: Fastlane tests
+                      identifier: Fastlane_tests
+                      spec:
+                        connectorRef: harnessnew
+                        image: fastlanetools/ci:0.3.0
+                        shell: Sh
+                        command: |-
+                          #!/bin/bash -eo pipefail
+                          bundle exec fastlane execute_tests
+                      when:
+                        stageStatus: All
+                      failureStrategies: []
   properties:
     ci:
       codebase:
