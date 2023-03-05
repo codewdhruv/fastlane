@@ -176,6 +176,20 @@ pipeline:
                           gem install bundler -v 2.3.14
                           bundle config set --local path .bundle
                           bundle check || bundle install --jobs=4 --retry=3
+                  - step:
+                      type: Run
+                      name: Check PR metadata
+                      identifier: Check_PR_metadata
+                      spec:
+                        connectorRef: harnessnew
+                        image: fastlanetools/ci:0.3.0
+                        shell: Sh
+                        command: |-
+                          #!/bin/bash -eo pipefail
+                          bundle exec danger || echo "danger failed"
+                      when:
+                        stageStatus: All
+                      failureStrategies: []
   properties:
     ci:
       codebase:
