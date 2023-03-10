@@ -212,6 +212,7 @@ pipeline:
                         command: |-
                           #!/bin/bash -eo pipefail
                           sudo gem install bundler:2.3.14
+                          sudo bundle install
                           sudo bundle exec fastlane execute_tests
                         envVariables:
                           LC_ALL: C.UTF-8
