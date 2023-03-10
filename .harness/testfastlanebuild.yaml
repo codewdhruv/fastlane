@@ -212,6 +212,7 @@ pipeline:
                         shell: Sh
                         command: |-
                           #!/bin/bash -eo pipefail
+                          gem install bundler:2.3.14
                           bundle exec fastlane execute_tests
                         envVariables:
                           LC_ALL: C.UTF-8
