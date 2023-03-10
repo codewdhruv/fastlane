@@ -195,6 +195,10 @@ pipeline:
                         command: |-
                           #!/bin/bash -eo pipefail
                           bundle exec danger || echo "danger failed"
+                        envVariables:
+                          LC_ALL: C.UTF-8
+                          LANG: C.UTF-8
+                          FASTLANE_ITUNES_TRANSPORTER_PATH: .bundle
                       when:
                         stageStatus: All
                       failureStrategies: []
