@@ -180,6 +180,8 @@ pipeline:
                           sudo bundle config set --local path .bundle
                           sudo bundle check 
 
+                          sudo bundle install
+
                           sudo bundle update fastlane
                           sudo bundle exec fastlane execute_tests
                         envVariables:
