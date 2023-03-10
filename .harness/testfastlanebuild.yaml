@@ -163,6 +163,10 @@ pipeline:
                         command: |-
                           #!/bin/bash -eo pipefail
                           mkdir -p ~/test-reports
+                        envVariables:
+                          LC_ALL: C.UTF-8
+                          LANG: C.UTF-8
+                          FASTLANE_ITUNES_TRANSPORTER_PATH: .bundle
                   - step:
                       type: Run
                       name: Bundle install
@@ -176,6 +180,10 @@ pipeline:
                           gem install bundler -v 2.3.14
                           bundle config set --local path .bundle
                           bundle check 
+                        envVariables:
+                          LC_ALL: C.UTF-8
+                          LANG: C.UTF-8
+                          FASTLANE_ITUNES_TRANSPORTER_PATH: .bundle
                   - step:
                       type: Run
                       name: Check PR metadata
@@ -201,6 +209,10 @@ pipeline:
                         command: |-
                           #!/bin/bash -eo pipefail
                           bundle exec fastlane execute_tests
+                        envVariables:
+                          LC_ALL: C.UTF-8
+                          LANG: C.UTF-8
+                          FASTLANE_ITUNES_TRANSPORTER_PATH: .bundle
                       when:
                         stageStatus: All
                       failureStrategies: []
