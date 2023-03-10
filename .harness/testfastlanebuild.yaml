@@ -211,6 +211,7 @@ pipeline:
                         shell: Sh
                         command: |-
                           #!/bin/bash -eo pipefail
+                          sudo bundle config set --local path .bundle
                           sudo bundle update fastlane 
                           sudo bundle exec fastlane execute_tests
                         envVariables:
