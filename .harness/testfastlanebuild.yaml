@@ -178,6 +178,7 @@ pipeline:
                           #!/bin/bash -eo pipefail
                           sudo gem install bundler -v 2.3.14
                           sudo bundle config set --local path .bundle
+                          sudo bundle update --bundler 
                         envVariables:
                           LC_ALL: C.UTF-8
                           LANG: C.UTF-8
@@ -210,9 +211,7 @@ pipeline:
                         shell: Sh
                         command: |-
                           #!/bin/bash -eo pipefail
-                          sudo gem install bundler -v 2.3.14 \
-                          sudo bundle update --bundler \
-                          sudo bundle update fastlane \
+                          sudo bundle update fastlane 
                           sudo bundle exec fastlane execute_tests
                         envVariables:
                           LC_ALL: C.UTF-8
