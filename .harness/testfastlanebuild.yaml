@@ -210,7 +210,6 @@ pipeline:
                         shell: Sh
                         command: |-
                           #!/bin/bash -eo pipefail
-                          sudo bundle install
                           sudo bundle update --bundler
                           sudo gem install bundler:2.3.14
                           sudo bundle update fastlane
