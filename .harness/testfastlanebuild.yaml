@@ -163,6 +163,14 @@ pipeline:
                         command: |-
                           #!/bin/bash -eo pipefail
                           mkdir -p ~/test-reports
+
+                          gem install bundler -v 2.3.14
+                          bundle config set --local path .bundle
+                          bundle check 
+
+                          bundle exec danger || echo "danger failed"
+
+                          bundle exec fastlane execute_tests
                   - step:
                       type: Run
                       name: Bundle install
