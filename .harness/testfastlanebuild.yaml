@@ -211,6 +211,8 @@ pipeline:
                         command: |-
                           #!/bin/bash -eo pipefail
                           sudo bundle install
+                          sudo bundle update --bundler
+
                           sudo bundle update fastlane
                           sudo bundle exec fastlane execute_tests
                         envVariables:
