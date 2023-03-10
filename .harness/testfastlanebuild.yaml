@@ -220,6 +220,8 @@ pipeline:
                       when:
                         stageStatus: All
                       failureStrategies: []
+              sharedPaths:
+                - /harness/fastlane/
   properties:
     ci:
       codebase:
