@@ -224,7 +224,7 @@ pipeline:
                         stageStatus: All
                       failureStrategies: []
               sharedPaths:
-                - /harness/fastlane/
+                - /fastlane/
   properties:
     ci:
       codebase:
